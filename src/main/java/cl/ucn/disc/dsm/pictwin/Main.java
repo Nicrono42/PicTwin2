@@ -1,17 +1,57 @@
+/*
+ * Copyright (c) 2024. Departamento de Ingenieria de Sistemas y Computacion
+ */
+
 package cl.ucn.disc.dsm.pictwin;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+import cl.ucn.disc.dsm.pictwin.model.Persona;
+import cl.ucn.disc.dsm.pictwin.model.PicTwin;
+import cl.ucn.disc.dsm.pictwin.services.Controller;
+import cl.ucn.disc.dsm.pictwin.utils.FileUtils;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+import io.ebean.DB;
+
+import lombok.extern.slf4j.Slf4j;
+
+import java.io.File;
+import java.util.List;
+
+//The main
+@Slf4j
+public class Main {
+
+
+    //Starting point
+    public static void main(String[] args) {
+
+        log.info("Starting Main ..");
+
+        //the controller
+        Controller c = new Controller(DB.getDefault());
+
+        //seed the datebase
+        if (c.seed()){
+            log.debug("Seeded the database.");
         }
+
+        log.debug("Registering Persona ..");
+        Persona p = c.register("durrutia@ucn.cl","durrutia123");
+        log.debug("Persona: {}",p);
+
+        File file = FileUtils.getResourceFile("antofagata.jpg");
+        log.debug("PicTwin:{}",file);
+
+        PicTwin pt = c.addPic(p.getUlid(),-23.6509,-70.3975,file);
+        log.debug("PicTwin: {}",pt);
+
+        Persona p2 = c.login("durrutia@ucn.cl","durrutia123");
+        log.debug("Persona: {}",p2);
+
+        List<PicTwin> pts = c.getPicTwins(p.getUlid());
+        for (PicTwin ptt: pts){
+            log.debug("PicTwin: {}",pt);
+        }
+
+        log.debug("Done.");
     }
 }

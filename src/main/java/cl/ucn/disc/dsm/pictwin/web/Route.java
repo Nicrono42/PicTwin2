@@ -8,7 +8,8 @@ import lombok.Getter;
 import lombok.NonNull;
 
 import java.lang.reflect.Method;
-import java.util.logging.Handler;
+//import java.util.logging.Handler;
+import io.javalin.http.Handler;
 
 @Getter
 public abstract class Route {
@@ -29,7 +30,7 @@ public abstract class Route {
     }
 
     // methods
-    public enum method {
+    public enum Method {
         GET,
         POST,
         Put,

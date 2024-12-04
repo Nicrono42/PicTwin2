@@ -4,8 +4,8 @@
 
 plugins {
     id 'java'
-    id 'io.ebean' version "15.8.0"
-    id 'com.github.ben-manes.versions' version "0.51.0"
+    id ('io.ebean') version "15.8.0"
+    id ('com.github.ben-manes.versions') version "0.51.0"
 }
 
 group = 'cl.ucn.disc.dsm.pictwin'
@@ -30,7 +30,7 @@ dependencies {
     //ebean
     implementation 'io.ebean:ebean:15.8.0'
     implementation 'io.ebean:ebean-ddl-generator:15.8.0'
-    annotationProcessor 'io.bean:querybean-generator:15.8.0'
+    annotationProcessor 'io.ebean:querybean-generator:15.8.0'
 
     //database:sqlite
     implementation 'org.xerial:sqlite-jdbc:3.47.0.0'
@@ -46,7 +46,7 @@ dependencies {
 
     //gson
     //implementation 'com.google.code.gson:gson:2.11.0'
-    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.18.1'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.2'
 
     //javalin
     implementation 'io.javalin:javalin:6.3.0'

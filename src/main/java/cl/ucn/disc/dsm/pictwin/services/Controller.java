@@ -25,8 +25,7 @@ import java.util.List;
 
 //The Controller
 @Slf4j
-public class
-Controller {
+public class Controller {
 
     // The DB
     private final Database database;
@@ -83,7 +82,7 @@ Controller {
         return persona;
     }
 
-// Login a user
+    // Login a user
     public Persona login(@NonNull final String email, @NonNull final String password) {
 
         // find the Persona
@@ -151,4 +150,3 @@ Controller {
         return new QPicTwin().persona.ulid.equalTo(ulidPersona).findList();
     }
 }
-
